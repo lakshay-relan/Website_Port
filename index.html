@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LAKSHAY RELAN</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #navbar.scrolled {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(116px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  width: calc(100% - 80px);
+  max-width: 1100px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+
+  /* ✅ this makes round corners work with blur */
+  border-radius: 52px;
+  overflow: hidden;
+}
+
+    html, body {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #010101;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+    header.hero {
+      width: 100%;
+      height: 100vh;
+      background: url('./Img/head_img.jpg') no-repeat center center/cover;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 40px 60px 0 60px;
+      font-weight: 600;
+      gap: 40px;
+    }
+    nav .links {
+      display: flex;
+      gap: 40px;
+    }
+    .btn-primary {
+      background: #FF2D2D;
+      color: rgb(89, 0, 0);
+      padding: 12px 24px;
+      border: none;
+      border-radius: 100px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: scale(1.01);
+    }
+    .hero-content {
+      padding: 0 60px 60px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .hero-text {
+      max-width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 700px;
+    }
+    .hero-text p {
+      font-size: 18px;
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .hero-text h1 {
+      font-size: 140px;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+    .logo-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+    }
+    .logo-box img {
+      animation: logoFloat 6s ease-in-out infinite;
+    }
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.03);
+      }
+    }
+    .section {
+      padding: 20px 60px;
+    }
+    .section2 {
+      padding: 10px 60px 120px;
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .brands {
+      display: flex;
+      gap: 10px;
+      overflow: hidden;
+      position: relative;
+      white-space: nowrap;
+    }
+    .brands-track {
+      display: flex;
+      gap: 10px;
+      animation: scrollBrands 70s linear infinite;
+    }
+    @keyframes scrollBrands {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .brand-logo {
+      width: 260px;
+      height: 150px;
+      background: #111111;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .brand-logo img {
+      max-width: 80%;
+      max-height: 60%;
+      object-fit: contain;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .portfolio-item {
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      background: #230a0a;
+      border-radius: 16px;
+      margin: 0 auto;
+      position: relative;
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+      overflow: hidden;
+      z-index: 1;
+      /* For interactive-hover JS/CSS */
+    }
+    .portfolio-item:hover {
+      box-shadow: 0 0 20px rgba(255, 45, 115, 0.126), 0 0 60px rgba(236, 4, 97, 0.092);
+      transform: scale(1.01);
+      z-index: 2;
+    }
+    .portfolio-img-box {
+      border-radius: 12px;
+      overflow: hidden;
+      width: 100%;
+      height: auto;
+    }
+    .portfolio-img-box img {
+      width: 100%;
+      display: block;
+    }
+    .explore-btn {
+      margin-top: 80px;
+      margin-bottom: 100px;
+      position: relative;
+      overflow: visible;
+    }
+    .services-wrapper {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      width: 100%;
+    }
+    .services {
+      display: flex;
+      gap: 16px;
+      animation: scrollServices 60s linear infinite;
+      will-change: transform;
+      width: fit-content;
+      min-width: 200%; /* Ensure it's wide enough for seamless looping */
+    }
+    /* Constant speed seamless scroll animation for services */
+    @keyframes scrollServices {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .services-wrapper-2 {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    .services-2 {
+      display: flex;
+      gap: 16px;
+      animation: scrollServices2 60s linear infinite;
+      will-change: transform;
+      width: fit-content;
+      min-width: 200%; /* Ensure it's wide enough for seamless looping */
+      animation-direction: reverse;
+    }
+
+    /* Constant speed seamless scroll animation for reverse services */
+    @keyframes scrollServices2 {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .service-tile {
+      min-width: 320px;
+      height: 80px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      background: #1A1A1A;
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 0 32px;
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+      gap: 8px;
+    }
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      margin-left: 0;
+      margin-right: 8px;
+      margin-bottom: 0;
+      display: block;
+    }
+  .service-tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.016), rgba(255, 255, 255, 0));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  backdrop-filter: blur(3px);
+  transition: background 0.9s ease, border-color 0.5s ease;
+}
+
+.service-tag:hover {
+  background: linear-gradient(135deg, #1e00ff2b, #33ff001f); /* soft red-orange blend */
+  border-color: rgba(255, 255, 255, 0.246);
+}
+    .footer-container {
+      background: #111;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14px;
+    }
+    .footer-right {
+      text-align: right;
+      font-size: 16px;
+    }
+    .footer-bottom-text {
+      text-align: center;
+      width: 100%;
+      font-size: 72px;
+      font-weight: 900;
+      color: white;
+    }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px;
+      background: #111;
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14px;
+    }
+    .footer-right {
+      text-align: right;
+    }
+    .footer-right h1 {
+      font-size: 48px;
+      font-weight: 900;
+    }
+    .footer-right .exp {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    #custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background: #787878;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease-out;
+      mix-blend-mode: difference;
+      opacity: 0.95;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      transform: translate(-50%, -50%);
+    }
+
+    #custom-cursor.view-mode {
+      width: 90px;
+      height: 36px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.274);
+      color: #fff;
+      backdrop-filter: blur(6px);
+      opacity: 0.95;
+      mix-blend-mode: normal;
+      font-size: 13px;
+    }
+
+  
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  z-index: 1000;
+  transition:
+    background-color 0.4s ease,
+    backdrop-filter 0.4s ease,
+    box-shadow 0.4s ease,
+    border-radius 0.4s ease,
+    transform 0.4s ease,
+    width 0.4s ease,
+    left 0.4s ease,
+    top 0.4s ease;
+}
+#navbar.scrolled {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  width: calc(100% - 80px);
+  max-width: 1100px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+  border-radius: 60px;
+}
+#resume{
+  color:#FF2D2D;
+  background: #fff !important;
+  border: 2px solid #FF2D2D !important;
+}
+</style>
+<header class="hero" style="position: relative; width: 100%; height: 100vh; background: url('./Img/head_img.jpg') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: flex-end;">
+<nav class="navbar" id="navbar" style="
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 80px);
+  max-width: 1200px;
+  padding: 5px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  /* REMOVE: border-radius: 0; */
+  transition: 
+    background-color 0.4s ease,
+    backdrop-filter 1.0s ease,
+    border-radius 0.6s ease,
+    width 1.4s ease,
+    top 0.4s ease,
+    transform 0.4s ease,
+    box-shadow .4s ease;
+  z-index: 1000;
+">
+<a href="index.html">
+<div class="logo-box">
+<img alt="Logo" src="./Img/logo.png" style="width: 200%; height: 100%; object-fit: contain; border-radius: 8px;"/>
+</div>
+</a>
+<div style="display: flex; align-items: center; gap: 40px; margin-left: auto;">
+<div class="links">
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Work</a>
+</div>
+<a class="btn-primary" href="mailto:Lakshayrelan@outlook.com">Get in Touch</a>
+</div>
+</nav>
+<div class="hero-content" style="padding: 0 60px 60px;">
+<div class="hero-text" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 700px;">
+<h1 style="font-size: 140px; font-weight: 900; letter-spacing: -2px; text-align: left;">
+        LAKSHAY<span style="color:#FF2D2D">.</span>
+</h1>
+<p style="max-width: 360px; text-align: right; font-size: 18px; color: #ccc; line-height: 1.6;">
+        A digital designer<br/>
+        exploring the intersection of <br/>
+        design and technology, driven to craft innovative experiences.
+      </p>
+</div>
+</div>
+</header>
+
+<!-- 👇 Absolute bottom-left hero text -->
+<section class="section intro-highlight" style="text-align: right;">
+<div style="border-top: 1px solid #333; padding-top: 40px; margin-bottom: 40px; width: 100%;">
+<div style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin-bottom: 20px; text-align: left; color: #FF2D2D; padding-left: 60px;">
+<div style="width: 10px; height: 10px; background: #FF2D2D;"></div>
+<span style="color: white;">Hey I’m Lakshay Relan</span>
+</div>
+<div style="margin-left: auto; max-width: 800px;">
+<h2 style="font-size: 28px; font-weight: 700; line-height: 1.5; margin-bottom: 24px; text-align: right;">
+          A visual designer shaping ideas into impactful experiences. From graphic design to digital concepts, I craft the look, feel, and direction that bring projects to life.
+        </h2>
+<a class="btn-primary" href="mailto:Lakshayrelan@outlook.com" style="display: inline-block;">Get in Touch</a>
+</div>
+</div>
+<div style="display: flex; justify-content: flex-end; border-top: 1px solid #333; width: 50%; margin-left: auto; padding-top: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; gap: 40px;">
+<div style="max-width: 800px; text-align: right; display: flex; flex-direction: row; gap: 40px;">
+<div style="flex: 1;">
+<h3 style="font-size: 18px; font-weight: 700; margin-bottom: 10px;">Bringing Ideas to Life</h3>
+<p style="color: #ccc; font-size: 14px; line-height: 1.6;">
+            I specialize in transforming concepts into captivating 3D visuals. Whether it’s product renderings, or immersive environments, my portfolio is designed to tell a story.
+          </p>
+</div>
+<div style="flex: 1;">
+<h3 style="font-size: 18px; font-weight: 700; margin-bottom: 10px;">Collaborate with Me</h3>
+<p style="color: #ccc; font-size: 14px; line-height: 1.6;">
+            Let’s create something extraordinary together! Whether you’re looking to visualize a product, animate a concept, or build an interactive experience.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<p class="section-title">Brands I’ve worked with</p>
+<div class="brands">
+<div class="brands-track">
+<div class="brand-logo"><img alt="Brand 1" src="./Img/brand1.png"/></div>
+<div class="brand-logo"><img alt="Brand 2" src="./Img/brand2.png"/></div>
+<div class="brand-logo"><img alt="Brand 3" src="./Img/brand3.png"/></div>
+<div class="brand-logo"><img alt="Brand 4" src="./Img/brand4.png"/></div>
+<div class="brand-logo"><img alt="Brand 5" src="./Img/brand5.png"/></div>
+<div class="brand-logo"><img alt="Brand 6" src="./Img/brand6.png"/></div>
+<div class="brand-logo"><img alt="Brand 7" src="./Img/brand7.png"/></div>
+<div class="brand-logo"><img alt="Brand 8" src="./Img/brand8.png"/></div>
+<div class="brand-logo"><img alt="Brand 9" src="./Img/brand9.png"/></div>
+<div class="brand-logo"><img alt="Brand 10" src="./Img/brand10.png"/></div>
+<div class="brand-logo"><img alt="Brand 11" src="./Img/brand11.png"/></div>
+<div class="brand-logo"><img alt="Brand 12" src="./Img/brand12.png"/></div>
+</div>
+</div>
+</section>
+<section class="section">
+<div style="text-align: center; margin-bottom: 60px;">
+<h2 style="font-size: 48px; font-weight: 900;">Creative Highlights</h2>
+<p style="margin-top: 16px; color: #ccc; font-size: 16px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        A curated selection of my best work, showcasing projects .<br/>
+        that highlight my approach to design and creativity
+      </p>
+</div>
+<div class="portfolio-grid">
+<a href="coke-studio.html">
+<div class="portfolio-item interactive-hover" style="background: none; padding: 16px; background-color: #1a1a1a; border-radius: 20px;">
+<div class="portfolio-img-box">
+<img alt="Coke Studio" src="./Img/portfolio-coke.jpg">
+</img></div>
+<div style="padding: 12px 0 0;">
+<div style="display: flex; align-items: center; gap: 8px;">
+<div style="width: 12px; height: 12px; background: #FF2D2D; border-radius: 2px;"></div>
+<span style="font-weight: 600;">Coke Studio</span>
+</div>
+<div style="font-size: 14px; color: #888; margin-top: 4px;">2023</div>
+<div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+<span class="service-tag">AR</span>
+<span class="service-tag">Emerging Tech</span>
+</div>
+</div>
+</div>
+</a>
+<a href="dyson.html">
+<div class="portfolio-item interactive-hover" style="background: none; padding: 16px; background-color: #1a1a1a; border-radius: 20px;">
+<div class="portfolio-img-box">
+<img alt="Dyson" src="./Img/portfolio-dyson.jpg">
+</img></div>
+<div style="padding: 12px 0 0;">
+<div style="display: flex; align-items: center; gap: 8px;">
+<div style="width: 12px; height: 12px; background: #FF2D2D; border-radius: 2px;"></div>
+<span style="font-weight: 600;">Dyson</span>
+</div>
+<div style="font-size: 14px; color: #888; margin-top: 4px;">2023</div>
+<div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+<span class="service-tag">AI</span>
+<span class="service-tag">Ideation</span>
+</div>
+</div>
+</div>
+</a>
+<a href="volvo.html">
+<div class="portfolio-item interactive-hover" style="background: none; padding: 16px; background-color: #1a1a1a; border-radius: 20px;">
+<div class="portfolio-img-box">
+<img alt="Volvo" src="./Img/portfolio-volvo.jpg">
+</img></div>
+<div style="padding: 12px 0 0;">
+<div style="display: flex; align-items: center; gap: 8px;">
+<div style="width: 12px; height: 12px; background: #FF2D2D; border-radius: 2px;"></div>
+<span style="font-weight: 600;">Volvo</span>
+</div>
+<div style="font-size: 14px; color: #888; margin-top: 4px;">2023</div>
+<div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+<span class="service-tag">Metaverse</span>
+<span class="service-tag">Emerging Tech</span>
+</div>
+</div>
+</div>
+</a>
+<a href="maggi-quick-comm.html">
+<div class="portfolio-item interactive-hover" style="background: none; padding: 16px; background-color: #1a1a1a; border-radius: 20px;">
+<div class="portfolio-img-box">
+<img alt="Maggi quick comm" src="./Img/portfolio-maggi.jpg">
+</img></div>
+<div style="padding: 12px 0 0;">
+<div style="display: flex; align-items: center; gap: 8px;">
+<div style="width: 12px; height: 12px; background: #FF2D2D; border-radius: 2px;"></div>
+<span style="font-weight: 600;">Maggi quick comm</span>
+</div>
+<div style="font-size: 14px; color: #888; margin-top: 4px;">2023</div>
+<div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+<span class="service-tag">3D</span>
+<span class="service-tag">Motion</span>
+</div>
+</div>
+</div>
+</a>
+<!-- Additional hidden items -->
+<a href="x-brand.html">
+<div class="portfolio-item interactive-hover extra" style="display: none; background: none; padding: 16px; background-color: #1a1a1a; border-radius: 20px;">
+<div class="portfolio-img-box">
+<img alt="X Brand" src="./Img/x.jpg">
+</img></div>
+<div style="padding: 12px 0 0;">
+<div style="display: flex; align-items: center; gap: 8px;">
+<div style="width: 12px; height: 12px; background: #FF2D2D; border-radius: 2px;"></div>
+<span style="font-weight: 600;">Ciena</span>
+</div>
+<div style="font-size: 14px; color: #888; margin-top: 4px;">2024</div>
+<div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+<span class="service-tag">Visual</span>
+<span class="service-tag">Concept</span>
+</div>
+</div>
+</div>
+</a>
+<a href="y-brand.html">
+<div class="portfolio-item interactive-hover extra" style="display: none; background: none; padding: 16px; background-color: #1a1a1a; border-radius: 20px;">
+<div class="portfolio-img-box">
+<img alt="Y Brand" src="./Img/portfolio-britannia.jpg">
+</img></div>
+<div style="padding: 12px 0 0;">
+<div style="display: flex; align-items: center; gap: 8px;">
+<div style="width: 12px; height: 12px; background: #FF2D2D; border-radius: 2px;"></div>
+<span style="font-weight: 600;">Britannia</span>
+</div>
+<div style="font-size: 14px; color: #888; margin-top: 4px;">2025</div>
+<div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+<span class="service-tag">3D</span>
+<span class="service-tag">Product</span>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="explore-btn" style="text-align: center; margin-top: 80px; margin-bottom: 100px;">
+<a class="btn-primary interactive-hover" href="javascript:void(0)" id="explore-more-btn" style="background: #FF2D2D; padding: 14px 28px; font-weight: 600; border-radius: 100px;">Explore more</a>
+<a class="btn-primary interactive-hover" href="javascript:void(0)" id="show-less-btn" style="display: none; margin-left: 16px; background: #444; padding: 14px 28px; font-weight: 600; border-radius: 100px;">Show less</a>
+</div>
+</section>
+<section class="section2">
+<p class="section-title" style="text-align: center;">Capabilities<br/><small style="font-weight: 400; font-size: 16px; color: #ccc;">Focused on design that works first, and looks great second—services built around creativity and function.</small></p>
+<div class="services-wrapper">
+<div class="services">
+<div class="service-tile">
+<img alt="Design Strategy" class="service-icon" src="./Img/Icon/Outline/keypad.png"/>
+          Design Strategy
+        </div>
+<div class="service-tile">
+<img alt="Emerging Technologies" class="service-icon" src="./Img/Icon/Outline/code.png"/>
+          Emerging Technologies
+        </div>
+<div class="service-tile">
+<img alt="Graphic Design" class="service-icon" src="./Img/Icon/Outline/brush.png"/>
+          Graphic Design
+        </div>
+<div class="service-tile">
+<img alt="Creative AI" class="service-icon" src="./Img/Icon/Outline/message-square.png"/>
+          Creative AI
+        </div>
+<div class="service-tile">
+<img alt="UI/UX" class="service-icon" src="./Img/Icon/Outline/browser.png"/>
+          UI/UX
+        </div>
+<div class="service-tile">
+<img alt="Automation" class="service-icon" src="./Img/Icon/Outline/clock.png"/>
+          Automation
+        </div>
+<div class="service-tile">
+<img alt="3D Design" class="service-icon" src="./Img/Icon/Outline/cube.png"/>
+          3D Design
+        </div>
+<!-- Duplicated for seamless scroll loop -->
+<div class="service-tile">
+<img alt="Design Strategy" class="service-icon" src="./Img/Icon/Outline/keypad.png"/>
+          Design Strategy
+        </div>
+<div class="service-tile">
+<img alt="Emerging Technologies" class="service-icon" src="./Img/Icon/Outline/code.png"/>
+          Emerging Technologies
+        </div>
+<div class="service-tile">
+<img alt="Graphic Design" class="service-icon" src="./Img/Icon/Outline/brush.png"/>
+          Graphic Design
+        </div>
+<div class="service-tile">
+<img alt="Creative AI" class="service-icon" src="./Img/Icon/Outline/message-square.png"/>
+          Creative AI
+        </div>
+<div class="service-tile">
+<img alt="UI/UX" class="service-icon" src="./Img/Icon/Outline/browser.png"/>
+          UI/UX
+        </div>
+<div class="service-tile">
+<img alt="Automation" class="service-icon" src="./Img/Icon/Outline/clock.png"/>
+          Automation
+        </div>
+<div class="service-tile">
+<img alt="3D Design" class="service-icon" src="./Img/Icon/Outline/cube.png"/>
+          3D Design
+        </div>
+<!-- Extra duplication for seamless scroll loop -->
+<div class="service-tile">
+<img alt="Design Strategy" class="service-icon" src="./Img/Icon/Outline/keypad.png"/>
+          Design Strategy
+        </div>
+<div class="service-tile">
+<img alt="Emerging Technologies" class="service-icon" src="./Img/Icon/Outline/code.png"/>
+          Emerging Technologies
+        </div>
+<div class="service-tile">
+<img alt="Graphic Design" class="service-icon" src="./Img/Icon/Outline/brush.png"/>
+          Graphic Design
+        </div>
+<div class="service-tile">
+<img alt="Creative AI" class="service-icon" src="./Img/Icon/Outline/message-square.png"/>
+          Creative AI
+        </div>
+<div class="service-tile">
+<img alt="UI/UX" class="service-icon" src="./Img/Icon/Outline/browser.png"/>
+          UI/UX
+        </div>
+<div class="service-tile">
+<img alt="Automation" class="service-icon" src="./Img/Icon/Outline/clock.png"/>
+          Automation
+        </div>
+<div class="service-tile">
+<img alt="3D Design" class="service-icon" src="./Img/Icon/Outline/cube.png"/>
+          3D Design
+        </div>
+</div>
+</div>
+<div class="services-wrapper-2">
+<div class="services-2">
+<div class="service-tile">
+<img alt="Design Strategy" class="service-icon" src="./Img/Icon/Outline/keypad.png"/>
+          Design Strategy
+        </div>
+<div class="service-tile">
+<img alt="Emerging Technologies" class="service-icon" src="./Img/Icon/Outline/code.png"/>
+          Emerging Technologies
+        </div>
+<div class="service-tile">
+<img alt="Graphic Design" class="service-icon" src="./Img/Icon/Outline/brush.png"/>
+          Graphic Design
+        </div>
+<div class="service-tile">
+<img alt="Creative AI" class="service-icon" src="./Img/Icon/Outline/message-square.png"/>
+          Creative AI
+        </div>
+<div class="service-tile">
+<img alt="UI/UX" class="service-icon" src="./Img/Icon/Outline/browser.png"/>
+          UI/UX
+        </div>
+<div class="service-tile">
+<img alt="Automation" class="service-icon" src="./Img/Icon/Outline/clock.png"/>
+          Automation
+        </div>
+<div class="service-tile">
+<img alt="3D Design" class="service-icon" src="./Img/Icon/Outline/cube.png"/>
+          3D Design
+        </div>
+<!-- Duplicated for seamless scroll loop -->
+<div class="service-tile">
+<img alt="Design Strategy" class="service-icon" src="./Img/Icon/Outline/keypad.png"/>
+          Design Strategy
+        </div>
+<div class="service-tile">
+<img alt="Emerging Technologies" class="service-icon" src="./Img/Icon/Outline/code.png"/>
+          Emerging Technologies
+        </div>
+<div class="service-tile">
+<img alt="Graphic Design" class="service-icon" src="./Img/Icon/Outline/brush.png"/>
+          Graphic Design
+        </div>
+<div class="service-tile">
+<img alt="Creative AI" class="service-icon" src="./Img/Icon/Outline/message-square.png"/>
+          Creative AI
+        </div>
+<div class="service-tile">
+<img alt="UI/UX" class="service-icon" src="./Img/Icon/Outline/browser.png"/>
+          UI/UX
+        </div>
+<div class="service-tile">
+<img alt="Automation" class="service-icon" src="./Img/Icon/Outline/clock.png"/>
+          Automation
+        </div>
+<div class="service-tile">
+<img alt="3D Design" class="service-icon" src="./Img/Icon/Outline/cube.png"/>
+          3D Design
+        </div>
+<!-- Extra duplication for seamless scroll loop -->
+<div class="service-tile">
+<img alt="Design Strategy" class="service-icon" src="./Img/Icon/Outline/keypad.png"/>
+          Design Strategy
+        </div>
+<div class="service-tile">
+<img alt="Emerging Technologies" class="service-icon" src="./Img/Icon/Outline/code.png"/>
+          Emerging Technologies
+        </div>
+<div class="service-tile">
+<img alt="Graphic Design" class="service-icon" src="./Img/Icon/Outline/brush.png"/>
+          Graphic Design
+        </div>
+<div class="service-tile">
+<img alt="Creative AI" class="service-icon" src="./Img/Icon/Outline/message-square.png"/>
+          Creative AI
+        </div>
+<div class="service-tile">
+<img alt="UI/UX" class="service-icon" src="./Img/Icon/Outline/browser.png"/>
+          UI/UX
+        </div>
+<div class="service-tile">
+<img alt="Automation" class="service-icon" src="./Img/Icon/Outline/clock.png"/>
+          Automation
+        </div>
+<div class="service-tile">
+<img alt="3D Design" class="service-icon" src="./Img/Icon/Outline/cube.png"/>
+          3D Design
+        </div>
+</div>
+</div>
+<div style="text-align: center; margin-top: 40px; margin-bottom: -40px;">
+<a class="btn-primary" href="mailto:Lakshayrelan@outlook.com" style="margin: 0 8px;">Get in Touch</a>
+<a id="resume" class="btn-primary" href="#" style="margin: 0 8px; background: transparent; border: 1px solid white;">Resume</a>
+</div>
+</section>
+<footer class="footer-container">
+<div class="footer-top">
+<div class="footer-left">
+<div><strong>Let’s Talk</strong></div>
+<div>lakshay.relan@outlook.com</div>
+<div><a href="#">About</a></div>
+<div><a href="#">Work</a></div>
+<div><a href="#">Resume</a></div>
+<div><a href="#">LinkedIn</a></div>
+</div>
+<div class="footer-right">
+<div class="exp">Experience <br/><strong>7+</strong></div>
+</div>
+</div>
+<div class="footer-bottom-text">
+      2025 LAKSHAY RELAN<span style="color:#FF2D2D">*</span>
+</div>
+</footer>
+<div id="custom-cursor"></div>
+<script>
+
+  //animation 
+  const navbar = document.getElementById("navbar");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 20) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});
+  
+  // Optionally ensure infinite scroll restarts
+  const track = document.querySelector('.brands-track');
+  track.addEventListener('animationiteration', () => {
+    track.style.animation = 'none';
+    track.offsetHeight; // trigger reflow
+    track.style.animation = null;
+  });
+
+  // Custom Cursor Logic
+  const cursor = document.getElementById('custom-cursor');
+  // Hide default cursor
+  document.body.style.cursor = 'none';
+  // Move cursor dot (use transform for smoother, more premium motion)
+  document.addEventListener('mousemove', e => {
+    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  });
+
+  // Interactive hover effect for custom cursor
+  function setCursorInteractive(state) {
+    if (state) {
+      cursor.classList.add('view-mode');
+      cursor.textContent = 'VIEW';
+    } else {
+      cursor.classList.remove('view-mode');
+      cursor.textContent = '';
+    }
+  }
+  // Add hover listeners for interactive elements
+  document.querySelectorAll('.interactive-hover').forEach(el => {
+    el.addEventListener('mouseenter', () => setCursorInteractive(true));
+    el.addEventListener('mouseleave', () => setCursorInteractive(false));
+  });
+
+  // Explore more / Show less portfolio logic
+  const exploreBtn = document.getElementById('explore-more-btn');
+  const showLessBtn = document.getElementById('show-less-btn');
+  const extraProjects = document.querySelectorAll('.portfolio-item.extra');
+
+  exploreBtn.addEventListener('click', () => {
+    extraProjects.forEach(item => item.style.display = 'block');
+    exploreBtn.style.display = 'none';
+    showLessBtn.style.display = 'inline-block';
+  });
+
+  showLessBtn.addEventListener('click', () => {
+    extraProjects.forEach(item => item.style.display = 'none');
+    exploreBtn.style.display = 'inline-block';
+    showLessBtn.style.display = 'none';
+  });
+
+</script>
+  <script>
+    document.querySelectorAll('img, video, source').forEach(el => {
+      el.addEventListener('contextmenu', e => e.preventDefault());
+    });
+  </script>
+</head>
